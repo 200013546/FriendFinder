@@ -57,6 +57,7 @@
     </div>
 
     <script type="text/javascript">
+        // Set questions in array here
         var questions = [
             "Your mind is always buzzing with unexplored ideas and plans.",
             "Generally speaking, you rely more on your experience than your imagination.",
@@ -69,7 +70,7 @@
             "You think that everyone’s views should be respected regardless of whether they are supported by facts or not.",
             "You feel more energetic after spending time with a group of people."
         ];
-
+        // Loop question
         for (var j = 0; j < questions.length; j++) {
             i = j + 1;
             questionSelect = "<h3><strong>Question " + i + "</strong></h3>";
@@ -84,7 +85,7 @@
             questionSelect += "</select>";
             $("#questions").append(questionSelect);
         };
-
+        // Verify that all questions are being answered
         var config = {
             ".chosen-select": {},
             ".chosen-select-deselect": {
@@ -105,6 +106,7 @@
             $(selector).chosen(config[selector]);
         }
 
+        // On answering all quetions, continue here
         $("#submit").on("click", function (event) {
             event.preventDefault();
             function validateForm() {
@@ -124,6 +126,7 @@
                 return isValid;
             }
 
+            // Validation here
             if (validateForm()) {
                 var userData = {
                     name: $("#name").val(),
@@ -142,6 +145,7 @@
                     ]
                 };
 
+                // Post results back
                 $.post("/api/friends", userData, function (data) {
 
                     $("#match-name").text(data.bestMatch);
